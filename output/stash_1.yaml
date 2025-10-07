@@ -1,16 +1,17 @@
 mode: Rule
 log-level: info
 allow-lan: true
-proxy-providers:
-  phone1:
-    type: http
-    url: https://cdn.jsdelivr.net/gh/fashi88899/stash-config-FS@main/output/providers/proxy_1.yaml
-    interval: 3600
-    path: ./providers/phone1.yaml
+proxies:
+- name: Phone1
+  type: socks5
+  server: 38.213.193.104
+  port: 6051
+  username: Fs_UK1
+  password: ab123456
 proxy-groups:
 - name: Proxy
   type: select
   use:
-  - phone1
+  - Phone1
 rules:
 - MATCH,Proxy

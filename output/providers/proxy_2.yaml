@@ -1,7 +1,0 @@
-proxies:
-- name: Phone2
-  type: socks5
-  server: 109.176.203.53
-  port: 6051
-  username: Fs_UK1
-  password: ab123456
