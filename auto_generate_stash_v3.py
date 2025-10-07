@@ -88,12 +88,30 @@ rules:
         f.write(content)
     return path
 
-def make_qr(i):
-    url = f"{CDN_BASE}/stash_{i}.yaml"
-    img = qrcode.make(url)
-    path = os.path.join(OUTPUT_DIR, f"QR_Phone{i}.png")
-    img.save(path)
-    return path, url
+def write_stash_yaml(i):
+    """生成正确缩进格式的 stash_X.yaml"""
+    data = {
+        "mode": "Rule",
+        "log-level": "info",
+        "allow-lan": True,
+        "proxy-providers": {
+            f"phone{i}": {
+                "type": "http",
+                "url": f"{CDN_BASE}/providers/proxy_{i}.yaml",
+                "interval": 3600,
+                "path": f"./providers/phone{i}.yaml"
+            }
+        },
+        "proxy-groups": [
+            {"name": "Proxy", "type": "select", "use": [f"phone{i}"]}
+        ],
+        "rules": ["MATCH,Proxy"]
+    }
+
+    path = os.path.join(OUTPUT_DIR, f"stash_{i}.yaml")
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.dump(data, f, allow_unicode=True, sort_keys=False)
+    return path
 
 def git_push():
     try:
