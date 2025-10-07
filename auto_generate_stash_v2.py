@@ -47,6 +47,7 @@ def load_excel():
             "user": str(r["用户名"]).strip(),
             "pwd": str(r["密码"]).strip(),
         })
+    print(rows)
     return rows
 
 def write_proxy_yaml(i, ip, port, user, pwd):
