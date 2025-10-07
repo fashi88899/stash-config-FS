@@ -5,7 +5,7 @@ allow-lan: true
 proxy-providers:
 phone1:
 type: http
-url: "https://cdn.jsdelivr.net/gh/fashi88899/stash-config-FS@main/providers/proxy_1.yaml"
+url: "https://cdn.jsdelivr.net/gh/fashi88899/stash-config-FS@main/output/providers/proxy_1.yaml"
 interval: 3600
 path: ./providers/phone1.yaml
 
