@@ -2,17 +2,21 @@ mode: Rule
 log-level: info
 allow-lan: true
 proxies:
-- name: Phone2
+- name: Phone2.0
   type: socks5
   server: 109.176.203.53
   port: 6051
   username: Fs_UK1
   password: ab123456
+  udp: false
+  ip-version: 4
+  tls: false
+  skip-cert-verify: true
 proxy-groups:
 - name: Proxy
   type: select
-  use:
-  - Phone2
+  proxies:
+    - Phone2.0
 rules:
 - DOMAIN-SUFFIX,whatsapp.net,Proxy
 - DOMAIN-SUFFIX,whatsapp.com,Proxy
