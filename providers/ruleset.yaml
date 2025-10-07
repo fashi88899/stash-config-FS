@@ -1,0 +1,6 @@
+payload:
+  - DOMAIN-SUFFIX,google.com
+  - DOMAIN-SUFFIX,youtube.com
+  - DOMAIN-SUFFIX,telegram.org
+  - DOMAIN-KEYWORD,github
+  - IP-CIDR,8.8.8.8/32
