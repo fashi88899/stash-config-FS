@@ -1,0 +1,18 @@
+mode: Rule
+log-level: info
+allow-lan: true
+
+proxy-providers:
+phone2:
+type: http
+url: "https://cdn.jsdelivr.net/gh/fashi88899/stash-config-FS@main/providers/proxy_2.yaml"
+interval: 3600
+path: ./providers/phone2.yaml
+
+proxy-groups:
+- name: Proxy
+type: select
+use: [phone2]
+
+rules:
+- MATCH,Proxy
