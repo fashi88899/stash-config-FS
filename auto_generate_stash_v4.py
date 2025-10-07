@@ -65,7 +65,7 @@ def write_proxy_yaml(i, ip, port, user, pwd):
     return path
 
 def write_stash_yaml(i):
-    """生成正确缩进格式的 stash_X.yaml"""
+    """生成完全标准缩进格式的 stash_X.yaml（兼容 Stash）"""
     data = {
         "mode": "Rule",
         "log-level": "info",
@@ -79,14 +79,30 @@ def write_stash_yaml(i):
             }
         },
         "proxy-groups": [
-            {"name": "Proxy", "type": "select", "use": [f"phone{i}"]}
+            {
+                "name": "Proxy",
+                "type": "select",
+                "use": [f"phone{i}"]
+            }
         ],
-        "rules": ["MATCH,Proxy"]
+        "rules": [
+            "MATCH,Proxy"
+        ]
     }
 
     path = os.path.join(OUTPUT_DIR, f"stash_{i}.yaml")
+
+    # ✅ 控制缩进层级，防止 Stash 无法识别嵌套
+    yaml.SafeDumper.ignore_aliases = lambda *args: True
     with open(path, "w", encoding="utf-8") as f:
-        yaml.dump(data, f, allow_unicode=True, sort_keys=False)
+        yaml.dump(
+            data,
+            f,
+            allow_unicode=True,
+            sort_keys=False,
+            indent=2,          # 每层缩进 2 空格
+            default_flow_style=False,  # 强制多行结构
+        )
     return path
 
 def make_qr(i):
