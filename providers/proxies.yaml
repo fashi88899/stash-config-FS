@@ -1,0 +1,15 @@
+# Fill with your real servers. Avoid committing real passwords in a public repo.
+proxies:
+  - name: "SG-01"
+    type: socks5
+    server: 203.0.113.10
+    port: 1080
+    # username: user
+    # password: pass
+
+  - name: "US-01"
+    type: http
+    server: 198.51.100.20
+    port: 8080
+    # username: user
+    # password: pass
