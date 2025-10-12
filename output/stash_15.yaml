@@ -1,0 +1,24 @@
+mode: Rule
+log-level: info
+allow-lan: true
+proxies:
+- name: Phone15
+  type: socks5
+  server: 109.176.203.181
+  port: 6050
+  username: Fs_UK1
+  password: ab123456
+  udp: false
+  ip-version: 4
+  tls: false
+  skip-cert-verify: true
+proxy-groups:
+- name: Proxy
+  type: select
+  proxies:
+    - Phone15
+rules:
+- DOMAIN-SUFFIX,whatsapp.net,Proxy
+- DOMAIN-SUFFIX,whatsapp.com,Proxy
+- IP-CIDR,31.13.64.0/18,Proxy
+- MATCH,Proxy

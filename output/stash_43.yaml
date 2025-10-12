@@ -1,0 +1,24 @@
+mode: Rule
+log-level: info
+allow-lan: true
+proxies:
+- name: Phone43
+  type: socks5
+  server: 38.213.193.176
+  port: 6050
+  username: Fs_UK1
+  password: ab123456
+  udp: false
+  ip-version: 4
+  tls: false
+  skip-cert-verify: true
+proxy-groups:
+- name: Proxy
+  type: select
+  proxies:
+    - Phone43
+rules:
+- DOMAIN-SUFFIX,whatsapp.net,Proxy
+- DOMAIN-SUFFIX,whatsapp.com,Proxy
+- IP-CIDR,31.13.64.0/18,Proxy
+- MATCH,Proxy
